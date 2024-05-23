@@ -45,6 +45,22 @@ export class UsersService {
       })
   }
 
+  async updateProfile(updateUser: UpdateUserDto): Promise<User> {
+    const {username,email, phone, password} = updateUser; 
+    const hashedPassword = (password) ? await bcrypt.hash(password, 10) : undefined;
+    const newUser = this.prismaService.user.update({
+      where: { username },
+      data: {
+        password: hashedPassword,
+        email,
+        phone
+      }
+    });
+
+    delete (await newUser).password
+    return newUser;
+
+  }
   async findAll(): Promise<User[]> {
     return this.prismaService.user.findMany();
   }
