@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../src/prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { Role, User } from '@prisma/client';
@@ -25,18 +25,24 @@ export class UsersService {
           });
     }
 
-  async updateUser(id: string ,updateUser: UpdateUserDto): Promise<User> {
-    const {username, email, password, role} = updateUser;
+  async updateUser(updateUser: UpdateUserDto): Promise<User> {
+    const {username, password, role} = updateUser;
     const hashedPassword = (password) ? await bcrypt.hash(password, 10) : undefined;
-    return this.prismaService.user.update({
-      where: { id },
-      data: {
-        email,
-        password: hashedPassword,
-        username,
-        role,
-      }
-    });
+    if (hashedPassword)
+      return this.prismaService.user.update({
+        where: { username },
+        data: {
+          password: hashedPassword,
+          role,
+        }
+      });
+      else 
+        return this.prismaService.user.update({
+          where: { username},
+          data: {
+            role
+          }
+      })
   }
 
   async findAll(): Promise<User[]> {
