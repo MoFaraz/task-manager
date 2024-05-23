@@ -16,5 +16,9 @@ export class UpdateUserDto {
 
     @IsString()
     @IsOptional()
+    phone?: string;
+
+    @IsString()
+    @IsOptional()
     role?: Role;
 }

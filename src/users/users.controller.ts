@@ -38,6 +38,11 @@ export class UsersController {
         return this.usersService.updateUser(updateUserDto);
     }
 
+    @Put(':id')
+    @Roles('ADMIN', 'USER')
+    async updateProfile(@Body() updateUserDto: UpdateUserDto): Promise<User> {
+        return this.usersService.updateProfile(updateUserDto);
+    }
     @Delete(':id')
     @Roles('ADMIN')
     async delete(@Param('id')id: string): Promise<User> {
