@@ -18,9 +18,11 @@ model User {
   username         String   @unique
   email            String   @unique
   password         String
+  phone            String?
   role             Role     @default(USER)
   createdDate      DateTime @default(now())
   lastModifiedDate DateTime @updatedAt
+  tasks            Task[]
 }
 
 model Task {
@@ -31,6 +33,8 @@ model Task {
   file             String?
   createdDate      DateTime  @default(now())
   lastModifiedDate DateTime  @updatedAt
+  userId           String
+  user             User      @relation(fields: [userId], references: [id])
 }
 
 enum TaskStatus {
