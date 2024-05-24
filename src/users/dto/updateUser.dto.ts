@@ -12,11 +12,11 @@ export class UpdateUserDto {
 
     @IsString()
     @IsOptional()
-    username?: string;
+    phone?: string;
 
     @IsString()
     @IsOptional()
-    phone?: string;
+    profilePicture?: string;
 
     @IsString()
     @IsOptional()

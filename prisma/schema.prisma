@@ -20,22 +20,24 @@ model User {
   password         String
   phone            String?
   role             Role     @default(USER)
+  profilePicture   String?
   createdDate      DateTime @default(now())
   lastModifiedDate DateTime @updatedAt
-  tasks            Task[]
+  tasks            Task[]   @relation("UserTasks")
 }
 
 model Task {
-  id               String   @id @default(uuid())
+  id               String     @id @default(uuid())
   title            String
   description      String
   status           TaskStatus @default(OPEN)
+  createdDate      DateTime   @default(now())
+  lastModifiedDate DateTime   @updatedAt
   file             String?
-  createdDate      DateTime  @default(now())
-  lastModifiedDate DateTime  @updatedAt
   userId           String
-  user             User      @relation(fields: [userId], references: [id])
+  user             User       @relation("UserTasks", fields: [userId], references: [id], onDelete: Cascade)
 }
+
 
 enum TaskStatus {
   OPEN
