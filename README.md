@@ -39,13 +39,13 @@ $ npm install
 ```
 ## Create .env file
 
-DATABASE_URL="postgresql://username:password@localhost:5432/task_manager"
+```DATABASE_URL="postgresql://username:password@localhost:5432/task_manager"
 JWT_SECRET="your_jwt_secret"
-
+```
 ## Migrate Database
 
-npx prisma migrate dev --name init
-
+```npx prisma migrate dev --name init
+```
 
 ## Running the app
 
