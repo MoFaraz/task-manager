@@ -44,7 +44,8 @@ JWT_SECRET="your_jwt_secret"
 ```
 ## Migrate Database
 ```
-npx prisma migrate dev --name init
+npx prisma migrate dev
+npx prisma generate
 ```
 
 ## Running the app
