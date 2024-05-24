@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { Role, User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { OmitUser } from 'src/auth/interfaces/auth.interface';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +16,7 @@ export class UsersService {
         const role = (createUserDto.role == 'ADMIN') ? Role.ADMIN : Role.USER;
         
 
-        return this.prismaService.user.create({
+        const newUser = this.prismaService.user.create({
             data: {
               username,
               email,
@@ -23,37 +24,34 @@ export class UsersService {
               role,
             },
           });
+        delete (await newUser).password
+        return newUser
     }
 
-  async updateUser(updateUser: UpdateUserDto): Promise<User> {
-    const {username, password, role} = updateUser;
-    const hashedPassword = (password) ? await bcrypt.hash(password, 10) : undefined;
-    if (hashedPassword)
-      return this.prismaService.user.update({
-        where: { username },
-        data: {
-          password: hashedPassword,
-          role,
-        }
-      });
-      else 
-        return this.prismaService.user.update({
-          where: { username},
-          data: {
-            role
-          }
-      })
-  }
-
-  async updateProfile(updateUser: UpdateUserDto): Promise<User> {
-    const {username,email, phone, password} = updateUser; 
+  async updateUser(updateUser: UpdateUserDto, id: string): Promise<User> {
+    const { password, role } = updateUser;
     const hashedPassword = (password) ? await bcrypt.hash(password, 10) : undefined;
     const newUser = this.prismaService.user.update({
-      where: { username },
+      where: { id },
+      data: {
+        password: hashedPassword,
+        role,
+      }
+    });
+    delete (await newUser).password    
+    return newUser
+  }
+
+  async updateProfile(updateUser: UpdateUserDto, id: string): Promise<User> {
+    const {email, phone, password, profilePicture} = updateUser; 
+    const hashedPassword = (password) ? await bcrypt.hash(password, 10) : undefined;
+    const newUser = this.prismaService.user.update({
+      where: { id },
       data: {
         password: hashedPassword,
         email,
-        phone
+        phone,
+        profilePicture
       }
     });
 
@@ -61,19 +59,52 @@ export class UsersService {
     return newUser;
 
   }
-  async findAll(): Promise<User[]> {
-    return this.prismaService.user.findMany();
+  async updateProfileImage(id: string, profilePicture: string): Promise<string> {
+    const newUser = await this.prismaService.user.update({
+      where: { id },
+      data: {
+        profilePicture
+      }
+    })
+    if (!newUser)
+      throw new NotFoundException('User not found')
+    return profilePicture
+  }
+  async findAll(skip?: number, take?: number): Promise<OmitUser[]> {
+    const users = await this.prismaService.user.findMany({
+      skip,
+      take
+    });
+    return users.map((user) => {
+      const {password, ...userWithoutPassword} = user;
+      return userWithoutPassword;
+    })
   }
 
   async findById(id: string): Promise<User|undefined> {
-    return this.prismaService.user.findUnique({ where: { id }});
+    const newUser = this.prismaService.user.findUnique({ where: { id }});
+    delete (await newUser).password
+    return newUser
   }
 
   async findByUsername(username: string): Promise<User|undefined> {
-    return this.prismaService.user.findUnique({ where: { username }});
+    const newUser = this.prismaService.user.findUnique({ where: { username }});
+    delete (await newUser).password
+    return newUser
   }
 
   async deleteUser(id: string): Promise<User> {
     return this.prismaService.user.delete({ where: { id }});
+  }
+
+  async checkUser(userId: string, id: string): Promise<User> {
+    const user = await this.prismaService.user.findUnique({
+      where: { id },
+    });
+    if (!user)
+      throw new NotFoundException('User not Found')
+    if (user.id !== userId)
+      throw new ForbiddenException('Access To this task is forbidden')
+    return user;
   }
 }
