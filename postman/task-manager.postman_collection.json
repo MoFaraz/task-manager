@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "ed9f74b3-11a5-41ad-a356-20e7246488fc",
+		"name": "task-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22127048"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "All User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZCIsInN1YiI6IjUwMTVjNWYwLTQ1NWItNDExYi04YWRmLWQ0YmYwZWM5MDk0ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjQ2NTUyNiwiZXhwIjoxNzE2NDY5MTI2fQ.v1Zu8fOnOeUH45cTigHDYLx_kTnLC2kKU0oLFnxxzro",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/users",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZCIsInN1YiI6IjUwMTVjNWYwLTQ1NWItNDExYi04YWRmLWQ0YmYwZWM5MDk0ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjQ1Njk2MSwiZXhwIjoxNzE2NDYwNTYxfQ.jC4x8nXJgvPzdb3bojXAetnBnq4-v_0gLMOYCzn8888",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mmd3@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"username\": \"mmd3\",\r\n    \"role\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"mohammad1\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/users/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/ca4cde34-8aa0-442e-be2d-5bf7b0508c71",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"ca4cde34-8aa0-442e-be2d-5bf7b0508c71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/1544366d-b285-4ef6-84fd-9f8cf4ce708e",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1544366d-b285-4ef6-84fd-9f8cf4ce708e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Profile Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vaGFtbWFkNCIsInN1YiI6ImVhNWQyM2JkLTc1NzItNGIwOC04NDNkLTYxNjExM2Y3ZDMwOCIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzE2NTMxODQ2LCJleHAiOjE3MTY1MzU0NDZ9.tcHpIpizpY_8Ht_3T8tUhaTy90RNerzJU7nswouinoY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/mohammad/Pictures/Saved Pictures/Acrylic Paint 1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/users/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find profile image",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"mohammad4@gmail.com\",\r\n    \"password\": \"1234\",\r\n    \"username\": \"mohammad4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"mmd2\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZCIsInN1YiI6IjUwMTVjNWYwLTQ1NWItNDExYi04YWRmLWQ0YmYwZWM5MDk0ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjQ1NzU3OCwiZXhwIjoxNzE2NDYxMTc4fQ.JiwFmTagPlyUZCrFN5IE6Hrj7oyH9oDVRHQw6eZuNfw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"3rd task\",\r\n    \"description\": \"something\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZCIsInN1YiI6IjUwMTVjNWYwLTQ1NWItNDExYi04YWRmLWQ0YmYwZWM5MDk0ZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjQ1ODI4NCwiZXhwIjoxNzE2NDYxODg0fQ.fjtQqUo4kVpYmDgudgNJEQWJXk46EKCIKrO-8lrEGxM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/tasks",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZDIiLCJzdWIiOiIxYTQxNWQ0ZC03YWIxLTQ1ZGItOWMwNy1jOGIxYTJlOTI2YTYiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTY1MjYyMDEsImV4cCI6MTcxNjUyOTgwMX0.WsWN7FSYf3G350mgqJKsKn9jgQ7_8V8tXqev3dDCIXg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"1st\",\r\n    \"description\": \"something\",\r\n    \"status\": \"DONE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/tasks/654f1568-6c06-4adb-89ec-6a58d57f80c9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"654f1568-6c06-4adb-89ec-6a58d57f80c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1tZDIiLCJzdWIiOiIxYTQxNWQ0ZC03YWIxLTQ1ZGItOWMwNy1jOGIxYTJlOTI2YTYiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTY1Mjc3MjUsImV4cCI6MTcxNjUzMTMyNX0.oi_0dW2XgL4Gv1nllbKLh8WoTARXlNFfwXwSrxqGF9I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/tasks/654f1568-6c06-4adb-89ec-6a58d57f80c9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"654f1568-6c06-4adb-89ec-6a58d57f80c9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload file",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "task file",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

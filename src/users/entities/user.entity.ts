@@ -4,6 +4,8 @@ export class User {
     password: string;
     username: string;
     role: Role;
+    phone: string;
+    profileImage: string;
     createdDate: Date;
     lastModifiedDate: Date;
   }
