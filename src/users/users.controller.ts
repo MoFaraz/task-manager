@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, UseGuards, Query, Req, UseInterceptors, UploadedFile, Res, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, UseGuards, Query, Req, UseInterceptors, UploadedFile, Res, HttpException, HttpStatus, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { CreateUserDto } from './dto/createUser.dto';
@@ -44,7 +44,7 @@ export class UsersController {
 
   @Post()
   @Roles('ADMIN')
-  async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async create(@Body(ValidationPipe) createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
   }
 
